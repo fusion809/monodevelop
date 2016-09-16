@@ -5,8 +5,7 @@
 # Contributor: Timm Preetz <timm@preetz.us>
 # Contributor: Giovanni Scafora <giovanni@archlinux.org>
 
-pkgname=monodevelop-stable
-_pkgname=monodevelop
+pkgname=monodevelop
 pkgver=6.1.0.5441
 pkgrel=1
 pkgdesc="An IDE primarily designed for C# and other .NET languages"
@@ -17,15 +16,13 @@ depends=('mono>=4.0.1' 'mono-addins>=0.6.2' 'gnome-sharp' 'hicolor-icon-theme')
 makedepends=('rsync' 'cmake' 'git' 'nuget' 'mono-pcl')
 options=(!makeflags)
 optdepends=('xsp: To run ASP.NET pages directly from monodevelop')
-provides=('monodevelop')
-conflicts=('monodevelop')
-source=("git://github.com/mono/monodevelop.git#tag=${_pkgname}-$pkgver"
+source=("git://github.com/mono/monodevelop.git#tag=${pkgname}-$pkgver"
 "e4037243e8ba2d78136d033578efd9b48a5a3fa3.patch")
 md5sums=('SKIP'
          'f1650a4327743719e15799c2ca88310a')
 
 prepare() {
-  cd $srcdir/$_pkgname
+  cd $srcdir/$pkgname
   patch -Np1 -i $srcdir/e4037243e8ba2d78136d033578efd9b48a5a3fa3.patch
 }
 
@@ -33,9 +30,9 @@ build() {
   export MONO_SHARED_DIR=$srcdir/src/.wabi
   mkdir -p $MONO_SHARED_DIR
 
-  cd $srcdir/$_pkgname
+  cd $srcdir/$pkgname
   git submodule update --init --recursive || return 1
-  git checkout tags/$_pkgname-$pkgver
+  git checkout tags/$pkgname-$pkgver
   git clean -dfx
 
   ./configure --prefix=/usr --profile=stable
@@ -43,7 +40,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/$_pkgname
+  cd $srcdir/$pkgname
 
   XDG_CONFIG_HOME="$srcdir"/config LD_PRELOAD="" make DESTDIR=$pkgdir install
   # delete conflicting files
