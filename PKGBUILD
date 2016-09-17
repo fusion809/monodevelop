@@ -7,23 +7,23 @@
 
 pkgname=monodevelop
 pkgver=6.1.0.5441
-pkgrel=2
+pkgrel=3
 pkgdesc="An IDE primarily designed for C# and other .NET languages"
 arch=('any')
 url="http://www.monodevelop.com"
 license=('GPL')
-depends=('mono>=4.0.1' 'mono-addins>=0.6.2' 'gnome-sharp' 'hicolor-icon-theme')
-makedepends=('rsync' 'cmake' 'git' 'nuget' 'mono-pcl' 'http-parser' 'curl')
+depends=('mono>=4.0.1' 'mono-addins>=0.6.2' 'gnome-sharp' 'hicolor-icon-theme' 'http-parser' 'curl')
+makedepends=('rsync' 'cmake' 'git' 'nuget' 'mono-pcl')
 options=(!makeflags)
 optdepends=('xsp: To run ASP.NET pages directly from monodevelop')
-source=("git://github.com/mono/monodevelop.git#tag=${pkgname}-$pkgver"
-"e4037243e8ba2d78136d033578efd9b48a5a3fa3.patch")
-md5sums=('SKIP'
-         'f1650a4327743719e15799c2ca88310a')
+source=("git://github.com/mono/monodevelop.git#tag=${pkgname}-$pkgver")
+md5sums=('SKIP')
 
 prepare() {
   cd $srcdir/$pkgname
-  patch -Np1 -i $srcdir/e4037243e8ba2d78136d033578efd9b48a5a3fa3.patch
+
+  sed -i -e "s/MonoDevelop.FSharp.Shared.ToolTip /MonoDevelop.FSharp.Shared.ToolTips.ToolTip /" "${srcdir}/$pkgname/main/external/fsharpbinding/MonoDevelop.FSharpBinding/FSharpTextEditorCompletion.fs"
+  sed -i -e "s/MonoDevelop.FSharp.Shared.EmptyTip /MonoDevelop.FSharp.Shared.ToolTips.EmptyTip /" "${srcdir}/${pkgname}/main/external/fsharpbinding/MonoDevelop.FSharpBinding/FSharpTextEditorCompletion.fs"
 }
 
 build() {
