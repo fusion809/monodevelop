@@ -13,7 +13,7 @@ arch=('any')
 url="http://www.monodevelop.com"
 license=('GPL')
 depends=('mono>=4.0.1' 'mono-addins>=0.6.2' 'gnome-sharp' 'hicolor-icon-theme')
-makedepends=('rsync' 'cmake' 'git' 'nuget' 'mono-pcl')
+makedepends=('rsync' 'cmake' 'git' 'nuget' 'mono-pcl' 'http-parser' 'curl')
 options=(!makeflags)
 optdepends=('xsp: To run ASP.NET pages directly from monodevelop')
 source=("git://github.com/mono/monodevelop.git#tag=${pkgname}-$pkgver"
