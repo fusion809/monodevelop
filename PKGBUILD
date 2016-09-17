@@ -16,14 +16,14 @@ depends=('mono>=4.0.1' 'mono-addins>=0.6.2' 'gnome-sharp' 'hicolor-icon-theme' '
 makedepends=('rsync' 'cmake' 'git' 'nuget' 'mono-pcl')
 options=(!makeflags)
 optdepends=('xsp: To run ASP.NET pages directly from monodevelop')
-source=("git://github.com/mono/monodevelop.git#tag=${pkgname}-$pkgver")
+source=("git://github.com/mono/monodevelop.git#tag=$pkgname-$pkgver")
 md5sums=('SKIP')
 
 prepare() {
   cd $srcdir/$pkgname
 
   sed -i -e "s/MonoDevelop.FSharp.Shared.ToolTip /MonoDevelop.FSharp.Shared.ToolTips.ToolTip /" "${srcdir}/$pkgname/main/external/fsharpbinding/MonoDevelop.FSharpBinding/FSharpTextEditorCompletion.fs"
-  sed -i -e "s/MonoDevelop.FSharp.Shared.EmptyTip /MonoDevelop.FSharp.Shared.ToolTips.EmptyTip /" "${srcdir}/${pkgname}/main/external/fsharpbinding/MonoDevelop.FSharpBinding/FSharpTextEditorCompletion.fs"
+  sed -i -e "s/MonoDevelop.FSharp.Shared.EmptyTip /MonoDevelop.FSharp.Shared.ToolTips.EmptyTip /" "${srcdir}/$pkgname/main/external/fsharpbinding/MonoDevelop.FSharpBinding/FSharpTextEditorCompletion.fs"
 }
 
 build() {
@@ -42,11 +42,11 @@ build() {
 package() {
   cd $srcdir/$pkgname
 
-  XDG_CONFIG_HOME="$srcdir"/config LD_PRELOAD="" make DESTDIR=$pkgdir install
+  XDG_CONFIG_HOME="$srcdir/config" LD_PRELOAD="" make DESTDIR="$pkgdir" install
   # delete conflicting files
   rm -r $(find $pkgdir/usr/share/mime/ -type f | grep -v "packages")
   rm -r $MONO_SHARED_DIR
 
   # NuGet.exe is missing somehow, fixed FS#43423
-  install -Dm755 "${srcdir}"/monodevelop/main/external/nuget-binary/nuget.exe "${pkgdir}"/usr/lib/monodevelop/AddIns/MonoDevelop.PackageManagement/NuGet.exe
+  install -Dm755 "${srcdir}/monodevelop/main/external/nuget-binary/nuget.exe" "${pkgdir}/usr/lib/monodevelop/AddIns/MonoDevelop.PackageManagement/NuGet.exe"
 }
