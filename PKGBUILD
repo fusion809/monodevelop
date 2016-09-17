@@ -7,7 +7,7 @@
 
 pkgname=monodevelop
 pkgver=6.1.0.5441
-pkgrel=1
+pkgrel=2
 pkgdesc="An IDE primarily designed for C# and other .NET languages"
 arch=('any')
 url="http://www.monodevelop.com"
