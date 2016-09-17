@@ -1,9 +1,10 @@
 # $Id$
-# Maintainer: Malah <malah@neuf.fr>
-# Contributor: Daniel Isenmann <daniel@archlinux.org>
+# Maintainer: Brenton Horne <brentonhorne77 at gmail dot com>
+# Contributor: Malah <malah at neuf dot fr>
+# Contributor: Daniel Isenmann <daniel at archlinux dot org>
 # Contributor: arojas
-# Contributor: Timm Preetz <timm@preetz.us>
-# Contributor: Giovanni Scafora <giovanni@archlinux.org>
+# Contributor: Timm Preetz <timm at preetz dot us>
+# Contributor: Giovanni Scafora <giovanni at archlinux dot org>
 
 pkgname=monodevelop
 pkgver=6.1.0.5441
@@ -22,8 +23,8 @@ md5sums=('SKIP')
 prepare() {
   cd $srcdir/$pkgname
 
-  sed -i -e "s/MonoDevelop.FSharp.Shared.ToolTip /MonoDevelop.FSharp.Shared.ToolTips.ToolTip /" "${srcdir}/$pkgname/main/external/fsharpbinding/MonoDevelop.FSharpBinding/FSharpTextEditorCompletion.fs"
-  sed -i -e "s/MonoDevelop.FSharp.Shared.EmptyTip /MonoDevelop.FSharp.Shared.ToolTips.EmptyTip /" "${srcdir}/$pkgname/main/external/fsharpbinding/MonoDevelop.FSharpBinding/FSharpTextEditorCompletion.fs"
+  sed -i -e "s/MonoDevelop.FSharp.Shared.ToolTip /MonoDevelop.FSharp.Shared.ToolTips.ToolTip /" main/external/fsharpbinding/MonoDevelop.FSharpBinding/FSharpTextEditorCompletion.fs
+  sed -i -e "s/MonoDevelop.FSharp.Shared.EmptyTip /MonoDevelop.FSharp.Shared.ToolTips.EmptyTip /" main/external/fsharpbinding/MonoDevelop.FSharpBinding/FSharpTextEditorCompletion.fs
 }
 
 build() {
