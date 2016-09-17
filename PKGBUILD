@@ -48,5 +48,5 @@ package() {
   rm -r $MONO_SHARED_DIR
 
   # NuGet.exe is missing somehow, fixed FS#43423
-  install -Dm755 "${srcdir}/monodevelop/main/external/nuget-binary/nuget.exe" "${pkgdir}/usr/lib/monodevelop/AddIns/MonoDevelop.PackageManagement/NuGet.exe"
+  install -Dm755 main/external/nuget-binary/nuget.exe "${pkgdir}/usr/lib/${pkgname}/AddIns/MonoDevelop.PackageManagement/NuGet.exe"
 }
