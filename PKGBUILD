@@ -7,7 +7,7 @@
 # Contributor: Giovanni Scafora <giovanni at archlinux dot org>
 
 pkgname=monodevelop
-pkgver=6.1.1.15
+pkgver=6.1.2.38
 pkgrel=1
 pkgdesc="An IDE primarily designed for C# and other .NET languages"
 arch=('any')
